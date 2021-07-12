@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="RU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="shortcut icon" type="image/png" href="{% static 'main/img/favicon.ico' %}"/>
+</head>
+<body>
+<h3 class="nav"><a href="{% url 'home' %}" class="nav_button"><i class="fas fa-american-sign-language-interpreting"></i>
+    Главная</a>
+</h3>
+<h3 class="nav"><a href="{% url 'addition' %}" class="nav_button"><i class="fas fa-ethernet"></i> Добавить запись</a>
+</h3>
+<h3 class="nav"><a href="{% url 'getting' %}" class="nav_button"><i class="fas fa-screwdriver"></i> Запросить данные</a>
+</h3>
+<h2>UDM-SVYAZ</h2>
+{% block body %}
+{% endblock %}
+</body>
+</html>

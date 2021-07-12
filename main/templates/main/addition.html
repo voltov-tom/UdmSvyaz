@@ -1,0 +1,28 @@
+{% extends 'main/layout.html' %}
+{{ notice }}
+{{ error }}
+{% block title %}
+{{ addition }}
+{% endblock %}
+
+{% block body %}
+<h3>{{ addition }}</h3>
+<form method="POST">
+    {% csrf_token %}
+    <div class="last_added">
+        <p>Город {{ form.city }}</p>
+        <p>Улица {{ form.street }}</p>
+        <p>Дом {{ form.house }}</p>
+        <p>Подъезд {{ form.entrance }}</p>
+        <p>Лифт {{ form.elevator }}</p>
+        <p>Тип связи {{ form.communication_type }}</p>
+        <p>Станция {{ form.station_type }}</p>
+        <p>Комментарий:</p>
+        <p>{{ form.comment }}</p>
+    </div>
+    <h3>
+        <button class="nav_button" type="reset"><i class="fas fa-redo"></i> Очистить форму</button>
+        <button class="nav_button" type="submit"><i class="fas fa-angle-double-down"></i> Добавить запись</button>
+    </h3>
+</form>
+{% endblock %}
