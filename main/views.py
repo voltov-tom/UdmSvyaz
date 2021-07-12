@@ -52,8 +52,6 @@ def getting(request):
                 f"WHERE CITY LIKE '%{city}%' and STREET LIKE '%{street}%' and HOUSE LIKE '%{house}%'")
         else:
             error = 'Такой записи нет'
-    else:
-        error = 'Такой записи нет'
 
     form = ElevatorsFormFind()
 
