@@ -1,9 +1,7 @@
 {% load static %}
 body {
     text-align: center;
-    font-family: Impact;
     color: white;
-    text-shadow: 0 0 2px black;
     background-image: url('../img/IMG_0557.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;

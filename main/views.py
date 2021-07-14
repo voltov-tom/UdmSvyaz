@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from .forms import ElevatorsForm, ElevatorsFormFind
 from .models import Elevators
 
 
+@login_required
 def index(request):
     def last_adds():
         raw = ''
@@ -21,6 +23,7 @@ def index(request):
     return render(request, 'main/index.html', data)
 
 
+@login_required
 def addition(request):
     form = ElevatorsForm()
     error = ''
@@ -41,6 +44,7 @@ def addition(request):
     return render(request, 'main/addition.html', data)
 
 
+@login_required
 def getting(request):
     form = ElevatorsFormFind()
     error = ''
