@@ -73,8 +73,10 @@ WSGI_APPLICATION = 'udmsvyaz.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'udm_svyaz',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'svyazDB',
+        'USER': 'root',
+        'PASSWORD': '12345679'
     }
 }
 

@@ -5,15 +5,24 @@ from .models import Elevators
 
 
 def index(request):
-    last_adds = Elevators.objects.raw('SELECT ID, STREET, HOUSE, UPDATED_AT '
-                                      'FROM MAIN_ELEVATORS '
-                                      'ORDER BY ID DESC LIMIT 10;')
+    def last_adds():
+        raw = ''
+        try:
+            raw = Elevators.objects.raw('SELECT id, ADDRESS, UPDATED_AT, COMMENT '
+                                        'FROM MAIN_ELEVATORS '
+                                        'ORDER BY UPDATED_AT '
+                                        'DESC LIMIT 10')
+        except ValueError:
+            print('sql_request_error')
+        return raw
+
     data = {'title': 'Последние записи:',
-            'last_adds': last_adds}
+            'last_adds': last_adds()}
     return render(request, 'main/index.html', data)
 
 
 def addition(request):
+    form = ElevatorsForm()
     error = ''
     notice = ''
     if request.method == 'POST':
@@ -24,8 +33,6 @@ def addition(request):
         else:
             error = 'Ошибка в вводе данных'
 
-    form = ElevatorsForm()
-
     data = {'addition': 'Добавить запись',
             'form': form,
             'error': error,
@@ -35,29 +42,27 @@ def addition(request):
 
 
 def getting(request):
+    form = ElevatorsFormFind()
     error = ''
-    notice = ''
+
     form_find = ''
     if request.method == 'POST':
         form = ElevatorsFormFind(request.POST)
         if form.is_valid():
-            city = form.cleaned_data.get("city").upper()
-            street = form.cleaned_data.get("street").upper()
-            house = form.cleaned_data.get("house").upper()
-            print(city, street, house)
+            address = form.cleaned_data.get("address")
             form_find = Elevators.objects.raw(
-                f"SELECT ID, CITY, STREET, HOUSE, ENTRANCE, ELEVATOR, COMMUNICATION_TYPE, "
-                f"STATION_TYPE, COMMENT "
-                f"FROM MAIN_ELEVATORS "
-                f"WHERE CITY LIKE '%{city}%' and STREET LIKE '%{street}%' and HOUSE LIKE '%{house}%'")
+                'SELECT id, ADDRESS, COMMUNICATION_TYPE, '
+                'STATION_TYPE, COMMENT, UPDATED_AT '
+                'FROM MAIN_ELEVATORS '
+                f'WHERE ADDRESS LIKE "%%{address}%%" '
+                'ORDER BY UPDATED_AT')
+            if (print(i) for i in form_find) == '':
+                error = 'Такой записи нет'
         else:
-            error = 'Такой записи нет'
-
-    form = ElevatorsFormFind()
+            error = print('Ошибка ввода')
 
     data = {'getting': 'Запросить данные',
             'form': form,
-            'notice': notice,
             'error': error,
             'form_find': form_find
             }

@@ -8,7 +8,10 @@
 <h3>{{ title }}</h3>
 <div class="last_added">
     {% for i in last_adds %}
-        <ul class="last_added">{{ i }}</ul>
+    <ul class="last_added">{{ i.ADDRESS }},
+        <br>комментарий: {{ i.COMMENT }},
+        <br>обновленно: {{ i.UPDATED_AT }}
+    </ul>
     {% endfor %}
 </div>
 {% endblock %}

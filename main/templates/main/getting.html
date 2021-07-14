@@ -10,9 +10,7 @@
 <form method="POST">
     {% csrf_token %}
     <div class="last_added">
-        <p>Город {{ form.city }}</p>
-        <p>Улица {{ form.street }}</p>
-        <p>Дом {{ form.house }}</p>
+        <p>Адрес {{ form.address }}</p>
     </div>
     <h3>
         <button class="nav_button" type="reset"><i class="fas fa-redo"></i> Очистить форму</button>
@@ -20,10 +18,12 @@
     </h3>
 </form>
 <div class="last_added">
-    {{ notice }}
     {{ error }}
-    {% for el in form_find %}
-    <ul class="last_added">{{ el }}</ul>
+    {% for i in form_find %}
+    <ul class="last_added">{{ i.ADDRESS }}, тип связи: {{ i.COMMUNICATION_TYPE }}, станция: {{ i.STATION_TYPE }},
+        <br>комментарий: {{ i.COMMENT }},
+        <br>обновленно: {{ i.UPDATED_AT }}
+    </ul>
     {% endfor %}
 </div>
 {% endblock %}

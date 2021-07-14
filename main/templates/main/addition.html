@@ -10,11 +10,7 @@
 <form method="POST">
     {% csrf_token %}
     <div class="last_added">
-        <p>Город {{ form.city }}</p>
-        <p>Улица {{ form.street }}</p>
-        <p>Дом {{ form.house }}</p>
-        <p>Подъезд {{ form.entrance }}</p>
-        <p>Лифт {{ form.elevator }}</p>
+        <p>Адрес {{ form.address }}</p>
         <p>Тип связи {{ form.communication_type }}</p>
         <p>Станция {{ form.station_type }}</p>
         <p>Комментарий:</p>
