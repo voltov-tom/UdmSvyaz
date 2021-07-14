@@ -1,0 +1,36 @@
+{% extends 'registration/layout.html' %}
+
+{% block body %}
+{% if form.errors %}
+Неверные данные.
+{% endif %}
+{% if next %}
+{% if user.is_authenticated %}
+У вас нет доступа до этой страницы.
+Для продолжения введите данные аккаунта с подходящими правами.
+{% endif %}
+{% endif %}
+<div class="last_added">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+</div>
+<h3>
+    <input class="nav_button" type="submit" value="ВОЙТИ"/>
+    <input class="nav_button" type="hidden" name="next" value="{{ next }}"/>
+</h3>
+</form>
+
+<!--{# Assumes you setup the password_reset view in your URLconf #}-->
+<!--<p><a href="{% url 'password_reset' %}">Lost password?</a></p>-->
+
+{% endblock %}
