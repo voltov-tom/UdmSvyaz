@@ -8,24 +8,25 @@ body {
     background-size: cover;
 }
 
-h3.nav {
-    padding: 4px;
-}
-
 .nav_button {
+    display: block;
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
     border: 2px double black;
     padding: 10px 20px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    outline: none;
     color: #fff;
     background-color: grey;
     border-radius: 15px;
     box-shadow: 0 5px #999;
 }
 
-.nav_button:hover {background-color: white}
+.nav_button:hover {
+    color: black;
+    background-color: white
+}
 
 .nav_button:active {
     background-color: red;
@@ -33,16 +34,48 @@ h3.nav {
     transform: translateY(4px);
 }
 
+a.nav_button {
+    display: block;
+    border: 2px double black;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: grey;
+    border-radius: 15px;
+    box-shadow: 0 5px #999;
+}
+
 ul.last_added {
     text-align: left;
-    padding: 5px; /* Поля вокруг текста */
+    padding: 5px;
 }
 
 div.last_added {
     border: 2px double black;
     border-radius: 10px;
     background: grey;
-    margin: 0 auto 0 auto;
+    margin: auto;
     width: 320px;
-    padding: 5px
+}
+div.result{
+    width: 320px;
+    margin: auto;
+}
+
+h3.result{
+    width: 320px;
+    margin: auto;
+    padding: 5px;
+}
+
+.button_confirm{
+    width: 160px;
+    height: 40px;
+    margin: auto;
+}
+p.result{
+    display: flex;
+    align-items: flex-start;
 }

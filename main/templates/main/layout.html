@@ -12,19 +12,19 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'main/img/favicon.ico' %}"/>
 </head>
 <body>
+{{ message }}
 <h2>UDM-SVYAZ</h2>
 <div class="last_added">
     Доброго времени суток {{ user.get_username }}.
     <a href="{% url 'logout'%}?next={{request.path}}" style="color: white; text-decoration: none;">>ВЫХОД<</a>
 </div>
-<h3 style="padding: 4px;">
-    <a href="{% url 'home' %}" class="nav_button"><i class="fas fa-american-sign-language-interpreting"></i>
-        Главная</a>
+<h3 class="result">
+    <a href="{% url 'home' %}" class="nav_button"><i class="fas fa-american-sign-language-interpreting"></i> Главная</a>
 </h3>
-<h3 style="padding: 4px;">
-    <a href="{% url 'addition' %}" class="nav_button"><i class="fas fa-ethernet"></i> Добавить запись</a>
+<h3 class="result">
+    <a href="{% url 'addition' %}" class="nav_button"><i class="fas fa-ethernet"></i> Добавить адрес</a>
 </h3>
-<h3 style="padding: 4px;">
+<h3 class="result">
     <a href="{% url 'getting' %}" class="nav_button"><i class="fas fa-screwdriver"></i> Запросить данные</a>
 </h3>
 {% block body %}

@@ -1,0 +1,13 @@
+{% extends 'main/layout.html' %}
+{% block body %}
+<h3>{{ lift.address }}</h3>
+<div class="result">
+    <p class="result">
+        <a href="{%url 'update' lift.id%}" class="nav_button">{{ lift.address }}, тип связи: {{ lift.communication_type }},
+            станция: {{ lift.station_type }},
+            <br>комментарий: {{ lift.comment }},
+            <br>обновленно: {{ lift.updated_at }}
+        </a>
+    </p>
+</div>
+{% endblock %}

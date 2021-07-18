@@ -1,12 +1,14 @@
 {% extends 'main/layout.html' %}
 {% block body %}
 <h3>{{ title }}</h3>
-<div class="last_added">
+<div class="result">
     {% for i in last_adds %}
-    <ul class="last_added">{{ i.ADDRESS }},
-        <br>комментарий: {{ i.COMMENT }},
-        <br>обновленно: {{ i.UPDATED_AT }}
-    </ul>
+    <p class="result">
+        <a href="{%url 'lift' i.id%}" class="nav_button">{{ i.address }},
+            <br>комментарий: {{ i.comment }},
+            <br>обновленно: {{ i.updated_at }}
+        </a>
+    </p>
     {% endfor %}
 </div>
 {% endblock %}

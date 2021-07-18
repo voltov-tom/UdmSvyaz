@@ -1,6 +1,6 @@
 {% extends 'main/layout.html' %}
 {% block body %}
-<h3>{{ addition }}</h3>
+<h3>Внести изменения:</h3>
 <form method="POST">
     {% csrf_token %}
     <div class="last_added">
@@ -11,8 +11,8 @@
         <p>{{ form.comment }}</p>
     </div>
     <h3>
-        <button class="button_confirm" type="reset"><i class="fas fa-redo"></i> Очистить форму</button>
-        <button class="button_confirm" type="submit"><i class="fas fa-angle-double-down"></i> Добавить адрес</button>
+        <button class="button_confirm" type="reset"><i class="fas fa-redo"></i> Отменить</button>
+        <button class="button_confirm" type="submit"><i class="fas fa-angle-double-down"></i> Сохранить</button>
     </h3>
 </form>
 {% endblock %}

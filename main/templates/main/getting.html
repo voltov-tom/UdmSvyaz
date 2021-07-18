@@ -1,6 +1,4 @@
 {% extends 'main/layout.html' %}
-{{ notice }}
-{{ error }}
 {% block body %}
 <h3>{{ getting }}</h3>
 <form method="POST">
@@ -9,17 +7,21 @@
         <p>Адрес: {{ form.address }}</p>
     </div>
     <h3>
-        <button class="nav_button" type="reset"><i class="fas fa-redo"></i> Очистить форму</button>
-        <button class="nav_button" type="submit"><i class="fas fa-angle-double-down"></i> Запросить данные</button>
+        <button class="button_confirm" type="reset"><i class="fas fa-redo"></i> Очистить форму</button>
+        <button class="button_confirm" type="submit"><i class="fas fa-angle-double-down"></i> Запросить данные</button>
     </h3>
 </form>
-<div class="last_added">
-    {{ error }}
-    {% for i in form_find %}
-    <ul class="last_added">{{ i.ADDRESS }}, тип связи: {{ i.COMMUNICATION_TYPE }}, станция: {{ i.STATION_TYPE }},
-        <br>комментарий: {{ i.COMMENT }},
-        <br>обновленно: {{ i.UPDATED_AT }}
-    </ul>
+<div class="result">
+    <p class="result">
+        {% for i in form_find %}
+        <a href="{%url 'lift' i.id%}" class="nav_button">{{ i.address }}, тип связи: {{ i.communication_type }},
+            станция: {{ i.station_type }},
+            <br>комментарий: {{ i.comment }},
+            <br>обновленно: {{ i.updated_at }}
+        </a>
+    </p>
+    {% empty %}
+    <div class="last_added">Ничего...</div>
     {% endfor %}
 </div>
 {% endblock %}
