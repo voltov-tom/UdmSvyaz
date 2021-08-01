@@ -1,11 +1,22 @@
 {% load static %}
-body {
-    text-align: center;
-    color: white;
+body::before {
+    content: '';
+    position: fixed; /* Фиксируем на одном месте */
+    left: 0; right: 0; /* Вся ширин */
+    top: 0; bottom: 0; /* Вся высота */
+    z-index: -1; /* Фон ниже текста */
+    /* Параметры фона */
     background-image: url('../img/IMG_0557.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    filter: blur(5px); /* Размытие */
+   }
+
+body {
+    text-align: center;
+    color: white;
+
 }
 
 .nav_button {
