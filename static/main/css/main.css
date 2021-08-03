@@ -1,11 +1,14 @@
 {% load static %}
+
+@font-face {
+font-family: 'custom_font';
+src: url('/static/main/fonts/ofont.ru_Stolzl.ttf') format('truetype');
+}
+
 body {
+    font-family: 'custom_font';
     text-align: center;
-    color: white;
-    background-image: url('../img/IMG_0557.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background: linear-gradient(to right, #EECFBA 25%, #C5DDE8, #EECFBA 75%);
 }
 
 .nav_button {
@@ -17,19 +20,18 @@ body {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    color: #fff;
-    background-color: grey;
+    background: linear-gradient(to top left, powderblue, pink);
     border-radius: 15px;
     box-shadow: 0 5px #999;
 }
 
 .nav_button:hover {
-    color: black;
-    background-color: white
+    color: white;
+    background-color: black
 }
 
 .nav_button:active {
-    background-color: red;
+    background: linear-gradient(to right, #EECFBA 25%, #C5DDE8, #EECFBA 75%);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
@@ -41,7 +43,7 @@ a.nav_button {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    color: #fff;
+    color: black;
     background-color: grey;
     border-radius: 15px;
     box-shadow: 0 5px #999;
@@ -55,7 +57,7 @@ ul.last_added {
 div.last_added {
     border: 2px double black;
     border-radius: 10px;
-    background: grey;
+    background: linear-gradient(to top left, powderblue, pink);
     margin: auto;
     width: 320px;
 }
