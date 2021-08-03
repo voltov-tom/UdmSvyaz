@@ -11,7 +11,7 @@ class Elevators(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.address}, обновлено: {self.updated_at}'
+        return f'{self.address}, комментарий: {self.comment}, {self.updated_at}'
 
     def get_absolute_url(self):
         return f'/main/{self.id}'
@@ -22,9 +22,5 @@ class Elevators(models.Model):
 
     def save(self, *args, **kwargs):
         self.validate_unique()
+        self.address = self.address.upper()  # save 'address' uppercase into DB
         super(Elevators, self).save(*args, **kwargs)
-
-# save 'address' with uppercase into DB
-# def save(self, *args, **kwargs):
-#     self.address = self.address.upper()
-#     return super(Elevators, self).save(*args, **kwargs)
