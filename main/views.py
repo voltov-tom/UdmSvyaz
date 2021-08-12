@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import UpdateView, DetailView
 
-from .forms import ElevatorsForm, ElevatorsFormFind
+from .forms import ElevatorsForm
 from .models import Elevators
 
 
@@ -20,8 +20,7 @@ def index(request):
             print('sql_request_error')
         return raw
 
-    data = {'title': 'Последние записи:',
-            'last_adds': last_adds()}
+    data = {'last_adds': last_adds()}
     return render(request, 'main/index.html', data)
 
 
@@ -38,11 +37,8 @@ def addition(request):
         else:
             message = 'Адрес уже существует.'
             form = ElevatorsForm(initial={'address': '', 'communication_type': '', 'comment': ''})
-    else:
-        pass
 
-    data = {'addition': 'Добавить адрес',
-            'form': form,
+    data = {'form': form,
             'message': message
             }
     return render(request, 'main/addition.html', data)
@@ -50,27 +46,14 @@ def addition(request):
 
 @login_required
 def getting(request):
-    form = ElevatorsFormFind()
-    form_find = ''
-    message = ''
-    if request.method == 'POST':
-        form = ElevatorsFormFind(request.POST)
-        if form.is_valid():
-            address = form.cleaned_data["address"]
-            form = ElevatorsFormFind(initial={'address': ''})
-            form_find = Elevators.objects.filter(address__icontains=address).all
+    if request.method == "POST":
+        query_name = request.POST.get('address', None)
+        if query_name != '':
+            results = Elevators.objects.filter(address__icontains=query_name)
+            return render(request, 'main/getting.html', {"results": results})
         else:
-            form = ElevatorsFormFind(initial={'address': ''})
-            message = 'Ошибка ввода'
-    else:
-        pass
-
-    data = {'getting': 'Запросить данные',
-            'form': form,
-            'form_find': form_find,
-            'message': message
-            }
-    return render(request, 'main/getting.html', data)
+            return render(request, 'main/getting.html', {"error": 'Ничего не найдено...'})
+    return render(request, 'main/getting.html')
 
 
 class ElevatorsDetailView(LoginRequiredMixin, DetailView):

@@ -22,15 +22,3 @@ class ElevatorsForm(ModelForm):
                 'placeholder': 'Пример: 10.11.12.13. Точка ростелеком Берша 54 второй подъезд(моноблок), воздушка с первого(Берша 54) на пятый подъезд(Берша 32), перемычки между подъездами по тех.этажу, ключи на союзной, 123'
             })
         }
-
-
-class ElevatorsFormFind(ModelForm):
-    class Meta:
-        model = Elevators
-        fields = ['address']
-
-        widgets = {
-            "address": TextInput(attrs={
-                'placeholder': 'З.Космодемьянской 15-3пасс'
-            })
-        }

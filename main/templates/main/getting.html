@@ -1,27 +1,36 @@
 {% extends 'main/layout.html' %}
+
 {% block body %}
-<h3>{{ getting }}</h3>
-<form method="POST">
-    {% csrf_token %}
-    <div class="last_added">
-        <p>Адрес: {{ form.address }}</p>
-    </div>
-    <h3>
-        <button class="button_confirm" type="reset"><i class="fas fa-redo"></i> Очистить форму</button>
-        <button class="button_confirm" type="submit"><i class="fas fa-angle-double-down"></i> Запросить данные</button>
-    </h3>
-</form>
+
+<h3>Запросить данные:</h3>
+<div class="last_added">
+    <p>
+    <form action="{% url 'getting' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="address" placeholder="союзная 6б">
+        <input type="submit" name="submit" value="Искать адрес">
+    </form>
+    </p>
+</div>
+
 <div class="result">
     <p class="result">
-        {% for i in form_find %}
-        <a href="{%url 'lift' i.id%}" class="nav_button">{{ i.address }}, тип связи: {{ i.communication_type }},
-            станция: {{ i.station_type }},
-            <br>комментарий: {{ i.comment }},
-            <br>обновленно: {{ i.updated_at }}
+        {{ error }}
+    </p>
+</div>
+
+{% for result in results %}
+
+<div class="result">
+    <p class="result">
+        <a href="{%url 'lift' result.id%}" class="nav_button">{{ result.address }}, тип связи: {{ i.communication_type}},
+            станция: {{ result.station_type }},
+            <br>комментарий: {{ result.comment }},
+            <br>обновленно: {{ result.updated_at }}
         </a>
     </p>
-    {% empty %}
-    <div class="last_added">Ничего...</div>
-    {% endfor %}
 </div>
+
+{% endfor %}
+
 {% endblock %}

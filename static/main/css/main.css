@@ -6,6 +6,7 @@ src: url('/static/main/fonts/ofont.ru_Stolzl.ttf') format('truetype');
 }
 
 body {
+    height: 100%;
     font-family: 'custom_font';
     text-align: center;
     background: linear-gradient(to right, #EECFBA 25%, #C5DDE8, #EECFBA 75%);
@@ -13,16 +14,14 @@ body {
 
 .nav_button {
     display: block;
-    overflow: hidden; /* Обрезаем все, что не помещается в область */
-    text-overflow: ellipsis; /* Добавляем многоточие */
+    overflow: hidden;
+    text-overflow: ellipsis;
     border: 2px double black;
     padding: 10px 20px;
-    cursor: pointer;
     text-align: center;
     text-decoration: none;
     background: linear-gradient(to top left, powderblue, pink);
     border-radius: 15px;
-    box-shadow: 0 5px #999;
 }
 
 .nav_button:hover {
@@ -32,7 +31,6 @@ body {
 
 .nav_button:active {
     background: linear-gradient(to right, #EECFBA 25%, #C5DDE8, #EECFBA 75%);
-    box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
 
@@ -40,18 +38,11 @@ a.nav_button {
     display: block;
     border: 2px double black;
     padding: 10px 20px;
-    cursor: pointer;
     text-align: center;
     text-decoration: none;
     color: black;
-    background-color: grey;
     border-radius: 15px;
-    box-shadow: 0 5px #999;
-}
-
-ul.last_added {
-    text-align: left;
-    padding: 5px;
+    box-shadow: 2px 2px black;
 }
 
 div.last_added {
@@ -61,6 +52,7 @@ div.last_added {
     margin: auto;
     width: 320px;
 }
+
 div.result{
     width: 320px;
     margin: auto;
@@ -77,7 +69,18 @@ h3.result{
     height: 40px;
     margin: auto;
 }
-p.result{
-    display: flex;
-    align-items: flex-start;
+
+html,
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex: 0 0 auto;
 }
